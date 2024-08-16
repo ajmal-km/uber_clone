@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uber_clone/utils/color_constants.dart';
+import 'package:uber_clone/view/global_widgets/option_tile_widget.dart';
+import 'package:uber_clone/view/settings_screen/settings_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -11,23 +13,12 @@ class AccountScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ColorConstants.mainColor,
         surfaceTintColor: ColorConstants.mainColor,
-        toolbarHeight: 150,
+        toolbarHeight: 130,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            IconButton(
-              onPressed: () {
-                // Navigation to home screen
-              },
-              icon: Icon(
-                Icons.close_sharp,
-                color: ColorConstants.mainBlack,
-                size: 30,
-              ),
-            ),
-            SizedBox(height: 3),
             Text(
-              "Stephen John",
+              "User",
               style: TextStyle(
                 color: ColorConstants.fontColor,
                 fontSize: 35,
@@ -70,12 +61,12 @@ class AccountScreen extends StatelessWidget {
             radius: 40,
             backgroundColor: Colors.grey[300],
             child: Icon(
-              Icons.person_4,
+              Icons.person,
               color: ColorConstants.greyFont,
               size: 58,
             ),
           ),
-          SizedBox(width: 25),
+          SizedBox(width: 20),
         ],
       ),
       body: ListView(
@@ -83,9 +74,10 @@ class AccountScreen extends StatelessWidget {
           ListView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(vertical: 17, horizontal: 14),
+            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 14),
             children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   ProfileOptions(
                     gridText: "Help",
@@ -131,79 +123,61 @@ class AccountScreen extends StatelessWidget {
           ListView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             children: <Widget>[
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.settings,
                 optionTitle: "Settings",
+                isTrailingVisible: false,
+                isDividerVisible: false,
+                onOptionTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsScreen(),
+                    ),
+                  );
+                },
               ),
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.email,
                 optionTitle: "Messages",
+                isTrailingVisible: false,
+                isDividerVisible: false,
               ),
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.wallet_giftcard_outlined,
                 optionTitle: "Send a gift",
+                isTrailingVisible: false,
+                isDividerVisible: false,
               ),
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.person_sharp,
                 optionTitle: "Earn by driving or delivering",
+                isTrailingVisible: false,
+                isDividerVisible: false,
               ),
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.business_center,
                 optionTitle: "Setup your bussiness profile",
+                isTrailingVisible: false,
+                isDividerVisible: false,
               ),
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.person,
                 optionTitle: "Manage Uber account",
+                isTrailingVisible: false,
+                isDividerVisible: false,
               ),
-              OptionTile(
+              OptionTileWidget(
                 optionIcon: Icons.info,
                 optionTitle: "Legal",
+                isTrailingVisible: false,
+                isDividerVisible: false,
               ),
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class OptionTile extends StatelessWidget {
-  const OptionTile({
-    super.key,
-    required this.optionIcon,
-    required this.optionTitle,
-  });
-
-  final IconData optionIcon;
-  final String optionTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(13),
-      onTap: () {
-        //
-      },
-      child: ListTile(
-        tileColor: ColorConstants.mainColor,
-        leading: Icon(
-          optionIcon,
-          color: ColorConstants.fontColor,
-        ),
-        title: Text(
-          optionTitle,
-          style: TextStyle(
-            color: ColorConstants.fontColor,
-            fontSize: 17,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.4,
-          ),
-        ),
-        // subtitle: ,
       ),
     );
   }
