@@ -8,6 +8,7 @@ class ServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.mainColor,
       appBar: AppBar(
         backgroundColor: ColorConstants.mainColor,
         surfaceTintColor: ColorConstants.mainColor,
